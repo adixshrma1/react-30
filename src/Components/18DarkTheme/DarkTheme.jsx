@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTheme } from "./ThemeContext";
 
 export const DarkTheme = () => {
-  const { toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
+
+  useEffect(()=>{
+    const elem = document.querySelector('html')
+    elem.classList.remove('light', 'dark')
+    elem.classList.add(theme);
+  })
 
   return (
     <>

@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import { ThemeContext } from "./Components/18DarkTheme/ThemeContext";
+import React from "react";
+import { ThemeProvider } from "./Components/18DarkTheme/ThemeContext";
 import { CartProvider } from "./Components/19AddToCart/CartContext";
 import { AuthProvider } from "./Components/23Authentification/AuthContext";
 import { TranslationProvider } from "./Components/25Translation/TranslationContext";
@@ -38,19 +38,6 @@ import {
 
 const App = () => {
 
-  const [themeMode, setThemeMode] = useState('light');     // It belongs to 18th Project (Dark Theme)
-
-  const toggleTheme = () =>{
-    if(themeMode === 'light') setThemeMode('dark');
-    else if(themeMode === 'dark') setThemeMode('light');
-  }
-
-  useEffect(()=>{
-    let elem = document.querySelector('html')
-    elem.classList.remove("light", "dark")
-    elem.classList.add(themeMode)
-  }, [themeMode])
-
   return (
     <>
       <Comp />
@@ -70,9 +57,9 @@ const App = () => {
       <Pagination />
       <ColorPicker />
       <ResponsiveMenu />
-      <ThemeContext.Provider value={{themeMode, toggleTheme}}>
+      <ThemeProvider>
         <DarkTheme />
-      </ThemeContext.Provider>
+      </ThemeProvider>
       <CartProvider>
         <AddToCart />
       </CartProvider>
